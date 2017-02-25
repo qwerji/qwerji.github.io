@@ -7,6 +7,7 @@ let colorSlider
 let colorSlider2
 let sizeSlider
 let intervalSlider
+let initial = true
 
 function preload() {
     font = loadFont("fonts/AvenirNextLTPro-Demi.otf") 
@@ -46,6 +47,10 @@ function setup() {
     input.input(change)
 }
 
+function randomWindowVector() {
+    return createVector(random(window.innerWidth),random(window.innerHeight))
+}
+
 function changeLabel() {
     if (checkbox.checked()) {
         label.html('Seek')
@@ -80,8 +85,8 @@ function changeWord(word) {
         for (var i = 0; i < abs(diff); i++) {
             const vehicle = new Vehicle()
             // Choose a random starting point if there are no points to spawn from
-            if (filteredWord.length == 1) {
-                vehicle.pos = createVector(random(window.width),random(window.height))
+            if (filteredWord.length == 1 || initial) {
+                vehicle.pos = randomWindowVector()
             } else {
                 let parent = points[Math.floor(random(points.length))]
                 vehicle.pos = createVector(parent.x,parent.y)
@@ -106,6 +111,7 @@ function changeWord(word) {
             vehicles.pop()
         }
     }
+    initial = false
 }
 
 function draw() {
