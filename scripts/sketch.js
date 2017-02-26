@@ -7,10 +7,21 @@ let colorSlider
 let colorSlider2
 let sizeSlider
 let intervalSlider
+let arrivalSlider
 let initial = true
 let flee = true
 let scatterButton
 let behaviorButton
+let randomWordButton
+const maxChars = 16
+let usedWordIdx = 1
+const words = [
+    'hello','whatup','vulfpeck','p5.jsIsDope',
+    'bentswanson.com','snailedit','TheCodingTrain',
+    'DanielSchiffman','LukasYounghams','steering',
+    'CraigReynolds','Braitenberg','steer=desire-vel',
+    'vehicles','schfiftyfive','odie','poinciana'
+]
 
 function preload() {
     font = loadFont("fonts/AvenirNextLTPro-Demi.otf") 
@@ -29,6 +40,10 @@ function setup() {
     behaviorButton.position(70, 34)
     behaviorButton.mousePressed(changeBehavior)
 
+    randomWordButton = createButton('?')
+    randomWordButton.position(115, 34)
+    randomWordButton.mousePressed(setRandomWord)
+
     colorSlider = createSlider(0,255,80)
     colorSlider.position(10, 55)
 
@@ -41,15 +56,31 @@ function setup() {
     intervalSlider = createSlider(1,20,3)
     intervalSlider.position(10, 100)
 
+    arrivalSlider = createSlider(0,15,15)
+    arrivalSlider.position(10, 115)
+
     label = createElement('p')
     label.position(170,12)
     label.addClass('white')
 
     input = createInput()
     input.position(10, 10)
-    input.value('Hello')
+    
+    setRandomWord()
     change()
     input.input(change)
+}
+
+function setRandomWord() {
+    // Ensures a new word
+    let randomIdx
+    do {
+        randomIdx = Math.floor(random(words.length))
+    } while(randomIdx == usedWordIdx)
+    usedWordIdx = randomIdx
+    const randomWord = words[randomIdx]
+    input.value(randomWord)
+    change()
 }
 
 function changeBehavior() {
@@ -71,14 +102,6 @@ function randomWindowVector() {
     return createVector(random(window.innerWidth),random(window.innerHeight))
 }
 
-function changeLabel() {
-    if (checkbox.checked()) {
-        label.html('Seek')
-    } else {
-        label.html('Flee')
-    }
-}
-
 function change() {
     changeWord(input.value())
 }
@@ -91,10 +114,10 @@ function changeWord(word) {
         if (letter != ' ') {
             filteredWord += letter
         }
-    }
-    // Don't update if the word is longer than 15 chars
-    if (filteredWord.length > 15) {
-        return
+        // Stop at max characters
+        if (filteredWord.length > maxChars) {
+            break
+        }
     }
     // Get the text points
     const points = font.textToPoints(filteredWord, 10, 300)
@@ -114,7 +137,14 @@ function changeWord(word) {
             vehicles.push(vehicle)
         }
         // Set the points' targets
-        for (var i = 0; i < points.length; i++) {
+        
+    // If the word requires less points, just pop the extra points (backspace)
+    } else if (diff > 0) {
+        for (var i = 0; i < diff; i++) {
+            vehicles.pop()
+        }
+    }
+    for (var i = 0; i < points.length; i++) {
             const point = points[i]
             vehicles[i].target = createVector(point.x, point.y)
             // Allows word wrap on up to 2 lines
@@ -125,12 +155,6 @@ function changeWord(word) {
                 target.y += 200
             }
         }
-    // If the word requires less points, just pop the extra points (backspace)
-    } else if (diff > 0) {
-        for (var i = 0; i < diff; i++) {
-            vehicles.pop()
-        }
-    }
     initial = false
 }
 

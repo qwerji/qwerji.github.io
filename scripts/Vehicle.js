@@ -42,7 +42,7 @@ Vehicle.prototype.behaviors = function() {
         behavior = this.flee(mouse)
     }
     const arrive = this.arrive(this.target)
-    arrive.mult(1)
+    arrive.mult(arrivalSlider.value()/10)
     behavior.mult(5)
     this.applyForce(arrive)
     this.applyForce(behavior)
