@@ -37,9 +37,9 @@ Vehicle.prototype.show = function() {
 
 Vehicle.prototype.behaviors = function() {
     const mouse = createVector(mouseX, mouseY)
-    let behavior = this.flee(mouse)
-    if (checkbox.checked()) {
-        behavior = this.seek(mouse)
+    let behavior = this.seek(mouse)
+    if (flee) {
+        behavior = this.flee(mouse)
     }
     const arrive = this.arrive(this.target)
     arrive.mult(1)

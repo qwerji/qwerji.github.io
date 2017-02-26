@@ -8,6 +8,9 @@ let colorSlider2
 let sizeSlider
 let intervalSlider
 let initial = true
+let flee = true
+let scatterButton
+let behaviorButton
 
 function preload() {
     font = loadFont("fonts/AvenirNextLTPro-Demi.otf") 
@@ -18,33 +21,50 @@ function setup() {
     background(51)
     textFont(font)
     textSize(192)
+    scatterButton = createButton('Scatter')
+    scatterButton.position(10, 34)
+    scatterButton.mousePressed(scatter)
+
+    behaviorButton = createButton('Flee')
+    behaviorButton.position(70, 34)
+    behaviorButton.mousePressed(changeBehavior)
+
     colorSlider = createSlider(0,255,80)
-    colorSlider.position(220, 13)
+    colorSlider.position(10, 55)
 
     colorSlider2 = createSlider(0,255,255)
-    colorSlider2.position(370, 13)
+    colorSlider2.position(10, 70)
 
     sizeSlider = createSlider(7,25,7)
-    sizeSlider.position(520, 13)
+    sizeSlider.position(10, 85)
 
     intervalSlider = createSlider(1,20,3)
-    intervalSlider.position(670, 13)
-
-    checkbox = createCheckbox()
-    checkbox.position(150,10)
+    intervalSlider.position(10, 100)
 
     label = createElement('p')
     label.position(170,12)
     label.addClass('white')
-
-    changeLabel()
-    checkbox.changed(changeLabel)
 
     input = createInput()
     input.position(10, 10)
     input.value('Hello')
     change()
     input.input(change)
+}
+
+function changeBehavior() {
+    flee = !flee
+    if (flee) {
+        behaviorButton.html('Flee')
+    } else {
+        behaviorButton.html('Seek')
+    }
+}
+
+function scatter() {
+    vehicles.forEach(function(vehicle) {
+        vehicle.pos = randomWindowVector()
+    })
 }
 
 function randomWindowVector() {
