@@ -2,7 +2,6 @@ let font
 let vehicles = []
 let input
 let checkbox
-let label
 let colorSlider
 let colorSlider2
 let sizeSlider
@@ -13,6 +12,8 @@ let flee = true
 let scatterButton
 let behaviorButton
 let randomWordButton
+let rotateButton
+let rotating = false
 const maxChars = 16
 let usedWordIdx = 1
 const words = [
@@ -33,35 +34,35 @@ function setup() {
     textFont(font)
     textSize(192)
     scatterButton = createButton('Scatter')
-    scatterButton.position(10, 34)
+    scatterButton.position(150, 11)
     scatterButton.mousePressed(scatter)
 
     behaviorButton = createButton('Flee')
-    behaviorButton.position(70, 34)
+    behaviorButton.position(210, 11)
     behaviorButton.mousePressed(changeBehavior)
 
     randomWordButton = createButton('?')
-    randomWordButton.position(115, 34)
+    randomWordButton.position(255, 11)
     randomWordButton.mousePressed(setRandomWord)
 
+    rotateButton = createButton('Rotate: OFF')
+    rotateButton.position(285, 11)
+    rotateButton.mousePressed(rotateDots)
+
     colorSlider = createSlider(0,255,80)
-    colorSlider.position(10, 55)
+    colorSlider.position(10, 40)
 
     colorSlider2 = createSlider(0,255,255)
-    colorSlider2.position(10, 70)
+    colorSlider2.position(10, 55)
 
     sizeSlider = createSlider(7,25,7)
-    sizeSlider.position(10, 85)
+    sizeSlider.position(10, 70)
 
     intervalSlider = createSlider(1,20,3)
-    intervalSlider.position(10, 100)
+    intervalSlider.position(10, 85)
 
     arrivalSlider = createSlider(0,15,15)
-    arrivalSlider.position(10, 115)
-
-    label = createElement('p')
-    label.position(170,12)
-    label.addClass('white')
+    arrivalSlider.position(10, 100)
 
     input = createInput()
     input.position(10, 10)
@@ -69,6 +70,16 @@ function setup() {
     setRandomWord()
     change()
     input.input(change)
+}
+
+function rotateDots() {
+    if (!rotating) {
+        rotating = true
+        rotateButton.html('Rotate: ON')
+    } else {
+        rotating = false
+        rotateButton.html('Rotate: OFF')
+    }
 }
 
 function setRandomWord() {
@@ -165,4 +176,12 @@ function draw() {
         vehicle.update()
         vehicle.show()
     })
+    if (rotating && vehicles.length) {
+        vehicles[vehicles.length-1].target = vehicles[0].target
+        if (frameCount % 20 == 0) {
+            for (var i = 0; i < vehicles.length-1; i++) {
+                vehicles[i].target = vehicles[i+1].target
+            }
+        }
+    }
 }
