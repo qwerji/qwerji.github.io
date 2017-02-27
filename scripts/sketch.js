@@ -1,9 +1,11 @@
 let font
-let vehicles = []
+const vehicles = []
 let input
 let checkbox
 let colorSlider
 let colorSlider2
+let staticColorButton
+let staticColor = false
 let sizeSlider
 let intervalSlider
 let arrivalSlider
@@ -14,6 +16,7 @@ let behaviorButton
 let randomWordButton
 let rotateButton
 let rotating = false
+let loadingLabel
 const maxChars = 16
 let usedWordIdx = 1
 const words = [
@@ -49,17 +52,21 @@ function setup() {
     rotateButton.position(285, 11)
     rotateButton.mousePressed(rotateDots)
 
+    staticColorButton = createButton('Random Colors')
+    staticColorButton.position(370, 11)
+    staticColorButton.mousePressed(switchColorsType)
+
     colorSlider = createSlider(0,255,80)
     colorSlider.position(10, 40)
 
     colorSlider2 = createSlider(0,255,255)
     colorSlider2.position(10, 55)
 
-    sizeSlider = createSlider(7,25,7)
-    sizeSlider.position(10, 70)
-
     intervalSlider = createSlider(1,20,3)
-    intervalSlider.position(10, 85)
+    intervalSlider.position(10, 70)
+
+    sizeSlider = createSlider(7,25,7)
+    sizeSlider.position(10, 85)
 
     arrivalSlider = createSlider(0,15,15)
     arrivalSlider.position(10, 100)
@@ -67,31 +74,78 @@ function setup() {
     input = createInput()
     input.position(10, 10)
     
+    loadingLabel = createElement('p')
+    loadingLabel.html('')
+    loadingLabel.position(150, 40)
+    loadingLabel.addClass('white')
+
     setRandomWord()
     change()
     input.input(change)
 }
 
+function random255() {
+    return random(0,256)
+}
+
+function switchColorsType() {
+    intervalSlider.remove()
+    staticColor = !staticColor
+    if (staticColor) {
+        colorSlider.value(random255())
+        colorSlider2.value(random255())
+        intervalSlider = createSlider(0,255,127)
+        intervalSlider.position(10, 70)
+        staticColorButton.html('Static Color')
+    } else {
+        intervalSlider = createSlider(1,20,3)
+        intervalSlider.position(10, 70)
+        staticColorButton.html('Random Colors')
+    }
+}
+
 function rotateDots() {
+    rotating = !rotating
     if (!rotating) {
-        rotating = true
         rotateButton.html('Rotate: ON')
     } else {
-        rotating = false
         rotateButton.html('Rotate: OFF')
     }
 }
 
 function setRandomWord() {
-    // Ensures a new word
-    let randomIdx
-    do {
-        randomIdx = Math.floor(random(words.length))
-    } while(randomIdx == usedWordIdx)
-    usedWordIdx = randomIdx
-    const randomWord = words[randomIdx]
-    input.value(randomWord)
-    change()
+    let randomWord
+    // Either make an api request or pull from the array
+    let api = random(1) > 0.5
+    if (api) {
+        loadingLabel.html('Querying API...')
+        getAPIWord(function(word) {
+            loadingLabel.html('')
+            randomWord = word
+            input.value(randomWord)
+            change()
+        })
+    } else {
+        // Ensures a new word
+        let randomIdx
+        do {
+            randomIdx = Math.floor(random(words.length))
+        } while(randomIdx == usedWordIdx)
+        usedWordIdx = randomIdx
+        randomWord = words[randomIdx]
+        input.value(randomWord)
+        change()
+    }
+}
+
+function getAPIWord(cb) {
+    // Get a word with a random length between 3 and the maxChars
+    loadStrings(`http://www.setgetgo.com/randomword/get.php?len=${Math.floor(random(3,maxChars))}`, function(data) {
+        const word = data[0]
+        if (word) {
+            cb(word) 
+        }
+    })
 }
 
 function changeBehavior() {
@@ -139,16 +193,14 @@ function changeWord(word) {
         for (var i = 0; i < abs(diff); i++) {
             const vehicle = new Vehicle()
             // Choose a random starting point if there are no points to spawn from
-            if (filteredWord.length == 1 || initial) {
+            if (filteredWord.length == 1 || initial || !vehicles.length) {
                 vehicle.pos = randomWindowVector()
             } else {
-                let parent = points[Math.floor(random(points.length))]
-                vehicle.pos = createVector(parent.x,parent.y)
+                let parent = vehicles[Math.floor(random(vehicles.length))]
+                vehicle.pos = createVector(parent.pos.x,parent.pos.y)
             }
             vehicles.push(vehicle)
         }
-        // Set the points' targets
-        
     // If the word requires less points, just pop the extra points (backspace)
     } else if (diff > 0) {
         for (var i = 0; i < diff; i++) {
@@ -156,32 +208,36 @@ function changeWord(word) {
         }
     }
     for (var i = 0; i < points.length; i++) {
-            const point = points[i]
-            vehicles[i].target = createVector(point.x, point.y)
-            // Allows word wrap on up to 2 lines
-            let target = vehicles[i].target
-            const threshold = window.width - 10
-            if (target.x > threshold) {
-                target.x -= threshold - 10
-                target.y += 200
-            }
+        const point = points[i]
+        vehicles[i].target = createVector(point.x, point.y)
+        // Allows word wrap on up to 2 lines
+        let target = vehicles[i].target
+        const threshold = window.width - 10
+        if (target.x > threshold) {
+            target.x -= threshold - 10
+            target.y += 200
         }
+    }
     initial = false
 }
 
 function draw() {
     background(51)
-    vehicles.forEach(function(vehicle) {
+    let loopBound = vehicles.length
+    let rotationBool = rotating && frameCount % 20 == 0
+    if (rotating && vehicles.length) {
+        loopBound = vehicles.length - 1
+        if (rotationBool) {
+            vehicles[vehicles.length-1].target = vehicles[0].target
+        }
+    }
+    for (var i = 0; i < loopBound; i++) {
+        let vehicle = vehicles[i]
         vehicle.behaviors()
         vehicle.update()
-        vehicle.show()
-    })
-    if (rotating && vehicles.length) {
-        vehicles[vehicles.length-1].target = vehicles[0].target
-        if (frameCount % 20 == 0) {
-            for (var i = 0; i < vehicles.length-1; i++) {
-                vehicles[i].target = vehicles[i+1].target
-            }
+        if (rotationBool) {
+            vehicle.target = vehicles[i+1].target
         }
+        vehicle.show()
     }
 }
