@@ -14,6 +14,7 @@ let flee = true
 let scatterButton
 let behaviorButton
 let randomWordButton
+let matterButton
 let rotateButton
 let rotating = false
 let loadingLabel
@@ -56,6 +57,10 @@ function setup() {
     staticColorButton.position(370, 11)
     staticColorButton.mousePressed(switchColorsType)
 
+    matterButton = createButton('Another Experiment')
+    matterButton.position(10, height - 30)
+    matterButton.mousePressed(goToMatter)
+
     colorSlider = createSlider(0,255,80)
     colorSlider.position(10, 40)
 
@@ -82,6 +87,10 @@ function setup() {
     setRandomWord()
     change()
     input.input(change)
+}
+
+function goToMatter() {
+    window.location = 'matter.html'
 }
 
 function random255() {
