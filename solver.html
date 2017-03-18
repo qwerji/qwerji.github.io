@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jumble Solver</title>
+    <style>
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Jumble Solver</h2>
+    <input type="text" id="word" placeholder="Jumble">
+    <p><button id="solve">Solve</button></p>
+    <h4>Potential Solutions:</h4>
+    <ul id="results"></ul>
+    <p id="solvingProgress">Solving...</p>
+    <footer>
+        <a href="http://bentswanson.com">qwerji</a>
+    </footer>
+    <script src="scripts/solver.js"></script>
+    <script>
+        const ul = document.getElementById('results'),
+            solveButton = document.getElementById('solve'),
+            textBox = document.getElementById('word'),
+            progressText = document.getElementById('solvingProgress'),
+            solver = new Solver(progressText, ul);
+
+        solveButton.onclick = () => {
+            solver.word = textBox.value
+            solver.solve()
+        }
+    </script>
+</body>
+</html>
