@@ -3,7 +3,10 @@ function Solver(pT, dE) {
     this.potentialSolutions = []
     const progressText = pT
     const displayElt = dE
+    let querying = false
     progressText.style.display = 'none'
+
+
     const permute = (endStr, startStr = "", perms = []) => {
         if (endStr.length <= 1) {
             // if the end string is 1 character, push the start and end as one permutation
@@ -25,12 +28,13 @@ function Solver(pT, dE) {
         const xhr = new XMLHttpRequest()
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
-                let res = JSON.parse(this.response).results
+                const res = JSON.parse(this.response).results
                 cb(res, word)
             }
         }
         xhr.open("GET", url, true)
         xhr.setRequestHeader("Accept", "application/json")
+        querying = true
         xhr.send()
     }
     const formatResults = () => {
@@ -44,15 +48,26 @@ function Solver(pT, dE) {
         }
     }
     this.solve = () => {
-        progressText.style.display = "inline"
-        if (this.word.length > 2) {
+        if (this.word.length > 2 && this.word.length < 7 && !querying) {
+            progressText.style.display = "inline"
+            progressText.innerHTML = 'Solving...'
             const allPerms = permute(this.word)
+            let count = 0
             this.potentialSolutions = []
             formatResults()
             for (var i = 0; i < allPerms.length; i++) {
                 API(allPerms[i], (res, word) => {
+                    count++
+                    if (count >= allPerms.length) {
+                        querying = false
+                        if (this.potentialSolutions.length < 1) {
+                            progressText.innerHTML = 'No solutions found'
+                        } else {
+                            progressText.innerHTML = 'Done'
+                        }
+                    }
                     if (res.length > 0) {
-                        progressText.style.display = "none"
+                        querying = false
                         this.potentialSolutions.push(word)
                         formatResults()
                     }
