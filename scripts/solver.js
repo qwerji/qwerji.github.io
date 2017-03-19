@@ -1,11 +1,11 @@
 function Solver(pT, dE) {
+
     this.word = ''
-    this.potentialSolutions = []
-    const progressText = pT
-    const displayElt = dE
+    this.potentialSolutions = {}
+
+    const progressText = pT, displayElt = dE
     let querying = false
     progressText.style.display = 'none'
-
 
     const permute = (endStr, startStr = "", perms = []) => {
         if (endStr.length <= 1) {
@@ -41,21 +41,21 @@ function Solver(pT, dE) {
         while (displayElt.hasChildNodes()) {
             displayElt.removeChild(displayElt.lastChild);
         }
-        for (var i = 0; i < this.potentialSolutions.length; i++) {
+        for (let solution in this.potentialSolutions) {
             const li = document.createElement("LI")
-            li.innerHTML = this.potentialSolutions[i]
+            li.innerHTML = solution
             displayElt.append(li)
         }
     }
     this.solve = () => {
         if (this.word.length > 2 && this.word.length < 7 && !querying) {
-            progressText.style.display = "inline"
+            progressText.style.display = "inherit"
             progressText.innerHTML = 'Solving...'
             const allPerms = permute(this.word)
             let count = 0
-            this.potentialSolutions = []
+            this.potentialSolutions = {}
             formatResults()
-            for (var i = 0; i < allPerms.length; i++) {
+            for (let i = 0; i < allPerms.length; i++) {
                 API(allPerms[i], (res, word) => {
                     count++
                     if (count >= allPerms.length) {
@@ -67,8 +67,7 @@ function Solver(pT, dE) {
                         }
                     }
                     if (res.length > 0) {
-                        querying = false
-                        this.potentialSolutions.push(word)
+                        this.potentialSolutions[word] = word
                         formatResults()
                     }
                 })
