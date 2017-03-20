@@ -1,0 +1,77 @@
+nav {
+    transition: top .3s;
+    transition-timing-function: ease-in;
+}
+.open {
+    transition: top .6s;
+    transition-timing-function: ease-out;
+    top: 0;
+}
+
+.bracket {
+    transition: all .4s;
+    transition-timing-function: ease-out;
+    display: inline-block;
+}
+
+.bracketHoverLeft {
+    margin-right: 5px;
+}
+.bracketHoverRight {
+    margin-left: 5px;
+}
+
+.bracketSpinLeft, .bracketSpinRight {
+    transition-timing-function: ease-out;
+    transition: all .4s, transform .7s;
+}
+.bracketSpinLeft {
+    transform: rotate(360deg);
+}
+.bracketSpinRight {
+    transform: rotate(-360deg);
+}
+
+a.navButton {
+    transition: all .3s;
+}
+a.openNavButton {
+    transition: all .6s;
+    background: none;
+}
+a.navButtonHover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.spin {
+    transition: .75s ease all;
+}
+.spin:hover {
+    transform: rotate(360deg);
+}
+
+section.lightHover {
+    transition: .3s ease filter;
+}
+section.lightHover:hover {
+    filter: brightness(1.085);
+}
+
+nav ul li a {
+    transition: .3s ease all;
+}
+nav ul li a:hover {
+    color: #5a8bcd;
+}
+
+div.loading {
+    transition: .6s ease opacity;
+}
+div.doneLoading {
+    opacity: 0;
+}
+
+h1#snail.animate {
+    transition: .9s linear all;
+    transform: rotate(720deg);
+}

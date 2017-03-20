@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <title>pattern</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <rect width="80" height="80" style="fill: #d3d3d9"/>
+  </g>
+  <g id="Layer_4" data-name="Layer 4">
+    <polygon points="80 80 40 40 40 68 52 80 80 80" style="fill: #02426a"/>
+    <polygon points="28 80 40 68 40 40 0 80 28 80" style="fill: #1b6fb0"/>
+    <polygon points="40 40 0 0 0 28 12 40 40 40" style="fill: #02426a"/>
+    <polygon points="40 12 28 0 0 0 40 40 40 12" style="fill: #545454"/>
+    <polygon points="40 12 52 0 80 0 40 40 40 12" style="fill: #d3d3d9"/>
+    <polygon points="68 40 80 28 80 0 40 40 68 40" style="fill: #1b6fb0"/>
+    <polygon points="80 52 68 40 40 40 80 80 80 52" style="fill: #545454"/>
+  </g>
+</svg>
