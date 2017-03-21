@@ -54,14 +54,18 @@
             nav.classList.remove('open')
             brackets[0].classList.remove('bracketSpinLeft')
             brackets[1].classList.remove('bracketSpinRight')
-            hamburger.innerHTML = '≡'
+            hamburger.src = 'images/hamburger.svg'
+            hamburger.style.width = '21px'
+            hamburger.style.height = '21px'
             navButton.classList.remove('openNavButton')
         } else {
             navOpen = true
             nav.classList.add('open')
             brackets[0].classList.add('bracketSpinLeft')
             brackets[1].classList.add('bracketSpinRight')
-            hamburger.innerHTML = '×'
+            hamburger.src = 'images/close.svg'
+            hamburger.style.width = '15px'
+            hamburger.style.height = '15px'
             navButton.classList.add('openNavButton')
             navButton.classList.remove('navButtonHover')
         }
