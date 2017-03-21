@@ -69,6 +69,7 @@ nav {
 .hamburger {
     font-size: 27pt;
     margin: 0 5px;
+    width: 21px;
 }
 main {
     background: #292929;
@@ -77,8 +78,9 @@ main {
         float: left;
         width: 25%;
         height: calc(100% / 3);
-        min-height: 240px;
+        min-height: 250px;
         background: darkgrey;
+        text-align: center;
     }
         main section.iconAndTitle img {
             width: 70px;
@@ -168,7 +170,7 @@ main {
         main section#musician h1 {
             color: #ffffff;
         }
-        main section#musician a {
+        main section#musician .card__back a {
             width: 100px;
             height: 100px;
             display: inline-block;
@@ -187,7 +189,10 @@ main {
             background: #5a8bcd;
         }
             main section#softwareDev .card__back h2 {
-                margin-top: 10px;
+                font-size: 15pt;
+            }
+            main section#softwareDev .card__back h2:first-of-type {
+                margin-top: 2%;
             }
             main section#softwareDev .card__back p {
                 margin: 0 5px;

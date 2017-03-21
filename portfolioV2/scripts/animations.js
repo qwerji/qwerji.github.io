@@ -12,12 +12,29 @@
         sectionLists = { // Stores the orderings for each breakpoint
             small: ["logo", "whoami", "softwareDev", "projects", "musician", "space8", "contact"],
             medium: ["logo", "whoami", "softwareDev", "projects", "contact", "musician"],
-            all: ["logo", "photo", "space3", "whoami", "musician", "projects", "softwareDev", "space8", "space9", "space10", "contact", "space12"]
+            all: ["logo", "photo", "space3", "whoami", "musician", "projects", "softwareDev", "space8", "space9", "space10", "contact", "space12"],
+            isACard: {"logo":true,"photo":true,"whoami":true,"musician":true,"softwareDev":true}
         }
 
     // Adds the section elements to the hash
-    for (var i = 0; i < sections.length; i++) {
+    for (let i = 0; i < sections.length; i++) {
         sectionHash[sections[i].id] = sections[i]
+    }
+
+    // Set up card flip event listener
+    for (let _section in sectionHash) {
+        // Apply the listener/cursor change only if it is a card
+        if (sectionLists.isACard[_section]) {
+            const section = sectionHash[_section]
+            applyCardFlipListener(section)
+            section.style.cursor = "pointer"
+        }
+    }
+    function applyCardFlipListener(section) {
+        section.addEventListener("click", event => {
+            const classList = section.children[0].classList
+            classList.contains("flipped") ? classList.remove("flipped") : classList.add("flipped")
+        })
     }
 
     // Hides the ugly setup for the card flips
@@ -81,7 +98,9 @@
 
     // This code handles the proper sections getting appended at the correct screensize
     // The bools make it so the nodes are only reset on breakpoints (rather than constantly)
-    let smallDidResize = false, mediumDidResize = false, allDidResize = false
+    let smallDidResize = false,
+        mediumDidResize = false,
+        allDidResize = false
     window.onresize = () => {
         if (window.innerWidth <= 590) {
             if (!smallDidResize) {
