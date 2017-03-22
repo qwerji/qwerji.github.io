@@ -157,13 +157,13 @@
     window.onresize()
 
     sectionHash['projects'].onclick = () => {
-        document.body.classList.add('noScroll')
+        main.classList.add('noScroll')
         main2.classList.add('flyIn')
     }
 
     homeLink.onclick = () => {
         main2.classList.remove('flyIn')
-        document.body.classList.remove('noScroll')
+        main.classList.remove('noScroll')
         navOpen = true
         navButton.onclick()
     }
