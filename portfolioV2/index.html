@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ben Swanson | Software Dev</title>
+    <title>{ benSwanson: 'developer' }</title>
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:regular,semi-bold|Open+Sans" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/animations.css">
@@ -21,15 +21,15 @@
     </div>
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Who Am I?</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a id="homeLink">Home</a></li>
+            <li><a href="docs/ben-swanson-resume.pdf">Resume</a></li>
+            <li><a id="projectLink">Projects</a></li>
+            <li><a href="mailto:bentswanson@gmail.com">Contact</a></li>
         </ul>
     </nav>
-    <a class="navButton" href="#"><span class="bracket">{</span><img src="images/hamburger.svg" class="hamburger"><span class="bracket">}</span></a>
+    <div class="navButton"><span class="bracket">{</span><img src="images/hamburger.svg" class="hamburger"><span class="bracket">}</span></div>
     <main>
-        <section class="lightHover" id="logo">
+        <section id="logo">
             <div class="card">
                 <div class="card__front">
                     <h1>Ben Swanson</h1>
@@ -37,16 +37,14 @@
                 <a href="http://test.bentswanson.com" class="card__back"></a>
             </div>
         </section>
-        <section class="lightHover" id="photo">
+        <section id="photo">
             <div class="card">
-                <div class="card__front">
-                </div>
-                <div class="card__back">
-                </div>
+                <div class="card__front"></div>
+                <div class="card__back"></div>
             </div>
         </section>
-        <section class="lightHover" id="space3"></section>
-        <section class="lightHover iconAndTitle" id="whoami">
+        <section id="space3"></section>
+        <section class="iconAndTitle" id="whoami">
             <div class="card">
                 <div class="card__front">
                     <img src="images/whoami.svg">
@@ -57,7 +55,7 @@
                 </div>
             </div>
         </section>
-        <section class="lightHover iconAndTitle" id="musician">
+        <section class="iconAndTitle" id="musician">
             <div class="card">
                 <div class="card__front">
                     <img src="images/music.svg">
@@ -65,16 +63,19 @@
                 </div>
                 <div class="card__back">
                     <a href="https://soundcloud.com/firefrongies">
-                        <img src="images/soundcloud.svg">
+                        <img src="images/soundcloud.svg" id="soundcloud">
                     </a
                     ><a href="https://firefrongies.bandcamp.com/">
-                        <img src="images/bandcamp.svg">
+                        <img src="images/bandcamp.svg" id="bandcamp">
                     </a>
                 </div>
             </div>
         </section>
-        <section class="lightHover" id="projects"></section>
-        <section class="lightHover iconAndTitle" id="softwareDev">
+        <section class="iconAndTitle" id="projects">
+            <img src="images/projects.svg">
+            <h1>Projects</h1>
+        </section>
+        <section class="iconAndTitle" id="softwareDev">
             <div class="card">
                 <div class="card__front">
                     <img src="images/code.svg">
@@ -92,10 +93,10 @@
                 </div>
             </div>
         </section>
-        <section class="lightHover" id="space8"></section>
-        <section class="lightHover" id="space9"></section>
-        <section class="lightHover" id="space10"></section>
-        <section class="lightHover" id="contact">
+        <section id="space8"></section>
+        <section id="space9"></section>
+        <section id="space10"></section>
+        <section id="contact">
             <div>
                 <a href="docs/ben-swanson-resume.pdf" target="_blank"><img title="Resume" class="spin" src="images/resume.svg"></a>
                 <a href="https://github.com/qwerji" target="_blank"><img title="Github" class="spin" src="images/github.svg"></a>
@@ -103,8 +104,73 @@
                 <a href="mailto:bentswanson@gmail.com" target="_blank"><img title="Gmail" class="spin" src="images/email.svg"></a>
             </div>
         </section>
-        <section class="lightHover" id="space12"></section>
+        <section id="space12"></section>
+    </main>
+    <main id="second">
+        <section class="iconAndTitle" id="food">
+            <div class="card">
+                <div class="card__front">
+                    <img src="images/food.svg">
+                    <h1>food++</h1>
+                </div>
+                <div class="card__back">
+                    <a href="https://github.com/qwerji/foodplusplus"><img src="images/github-black.svg" class="projectButtons"></a>
+                    <h2>food++</h2>
+                    <p>A Django app to connect food donors with food banks. Won the First Annual Coding Dojo Thanksgiving Hackathon!</p>
+                </div>
+            </div>
+        </section>
+        <section class="iconAndTitle" id="done-for">
+            <div class="card">
+                <div class="card__front">
+                    <img src="images/done-for.svg">
+                    <h1>Done For</h1>
+                </div>
+                <div class="card__back">
+                    <a href="http://donefor.bentswanson.com/"><img src="images/deployed.svg" class="projectButtons"></a>
+                    <h2>Done For</h2>
+                    <p>A choose-your-own-adventure game built with the MEAN Stack.</p>
+                </div>
+            </div>
+        </section>
+        <section id="project-space3"></section>
+        <section class="iconAndTitle" id="snail-fantasy">
+            <div class="card">
+                <div class="card__front">
+                    <img src="images/snail.svg">
+                    <h1>Snail Fantasy</h1>
+                </div>
+                <div class="card__back">
+                    <a href="https://github.com/qwerji/SnailPG"><img src="images/github-black.svg" class="projectButtons"></a>
+                    <h2>Snail Fantasy</h2>
+                    <p>An iOS Role-Playing-Game written in Swift utilizing Coredata and Firebase.</p>
+                </div>
+            </div>
+        </section>
+        <section class="iconAndTitle" id="blackbelts">
+            <div class="card">
+                <div class="card__front">
+                    <img src="images/blackbelt.svg">
+                    <h1>"Blackbelt" Exams</h1>
+                </div>
+                <div class="card__back">
+                    <div>
+                        <a href="https://github.com/qwerji/ios_belt_exam"><img src="images/swift.svg" class="projectButtons"></a>
+                        <a href="https://github.com/qwerji/mean_bb"><img src="images/mean.svg" class="projectButtons"></a>
+                        <a href="https://github.com/qwerji/python_blackbelt"><img src="images/python.svg" class="projectButtons"></a>
+                    </div>
+                    <h2>"Blackbelt" Exams</h2>
+                    <p>These three apps were built from scratch in less than 4 hours as a part of the Coding Dojo's course completion.</p>
+                </div>
+            </div>
+        </section>
+        <section class="iconAndTitle" id="experiments">
+            <a href="http://test.bentswanson.com">
+                <img src="images/experiments.svg">
+                <h1>Experiments</h1>
+            </a>
+        </section>
     </main>
     <script src="scripts/animations.js"></script>
 </body>
-</html> 
+</html>

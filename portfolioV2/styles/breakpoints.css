@@ -1,13 +1,19 @@
 @media all and (max-width: 590px) {
-    body main section {
+    body main section, body main#second section {
         width: 100%;
     }
     main section#softwareDev .card__back {
         background: #cdcdd5;
     }
+    main#second section#snail-fantasy .card__back {
+        background: #cdcdd5;
+    }
+    main#second section#project-space3 {
+        display: none;
+    }
 }
 @media all and (max-width: 1024px) {
-    main section {
+    main section, main#second section {
         width: 50%;
     }
     nav {

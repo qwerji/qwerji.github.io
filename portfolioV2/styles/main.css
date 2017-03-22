@@ -3,6 +3,7 @@
     padding: 0;
     color: #083962;
     font-family: 'Dosis', sans-serif;
+    font-weight: normal;
 }
 html, body, main {
     height: 100%;
@@ -10,9 +11,14 @@ html, body, main {
 }
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 ul {
     list-style-type: none;
+}
+p {
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 11pt;
 }
 div.loading {
     position: absolute;
@@ -20,16 +26,17 @@ div.loading {
     width: 100%;
     height: 100%;
     display: block;
-    background: #4a4a4a;
-    text-align: center;
+    background: #292929;
 }
-    div.loading h1 {
+    h1#snail {
+        font-size: 30pt;
         display: block;
         margin: 0 auto;
-        position: relative;
+        position: absolute;
         top: 40%;
+        left: calc(50% - 16px);
     }
-a.navButton {
+div.navButton {
     position: absolute;
     width: 60px;
     height: 45px;
@@ -39,6 +46,7 @@ a.navButton {
     font-size: 20pt;
     background: rgba(255,255,255,.9);
     z-index: 10;
+    cursor: pointer;
 }
 nav {
     text-align: center;
@@ -89,18 +97,13 @@ main {
             display: block;
             margin: 0 auto;
             position: relative;
-            bottom: -30%;
+            bottom: -26%;
         }
         main section.iconAndTitle h1 {
             position: relative;
             display: block;
             bottom: -45%;
             text-align: center;
-        }
-        main section a.fullBoxLink {
-            width: 100%;
-            height: 100%;
-            display: inline-block;
         }
     main section#logo {
         background: #cdcdd5;
@@ -111,7 +114,8 @@ main {
             margin: 0 auto;
             position: relative;
             font-size: 24pt;
-            top: calc(50% - 15.5px);
+            font-weight: bold;
+            top: calc(50% - 20.5px);
         }
         main section#logo .card__back {
             background: url(./../images/pattern.svg);
@@ -145,17 +149,10 @@ main {
         }
             main section#whoami .card__back h1 {
                 color: #ffffff;
-                bottom: -30%;
-                margin: 0 30px;
+                position: relative;
+                top: calc(50% - 62px);
+                margin: 0 5%;
             }
-        main section#whoami img {
-            width: 70px;
-            height: 70px;
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            bottom: -30%;
-        }
         main section#whoami h1 {
             position: relative;
             display: block;
@@ -175,11 +172,23 @@ main {
             width: 100px;
             height: 100px;
             display: inline-block;
-            margin-top: calc(40% - 50px);
+            position: relative;
+            top: calc(50% - 50px);
+            margin: 0 5px 0;
         }
+            main section#musician .card__back a img {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                position: static;
+            }
     main section#projects {
         background: #083962;
+        cursor: pointer;
     }
+        main section#projects h1 {
+            color: #cdcdd5;
+        }
     main section#softwareDev {
         background: #2062ac;
     }
@@ -191,6 +200,7 @@ main {
         }
             main section#softwareDev .card__back h2 {
                 font-size: 15pt;
+                margin-top: 3px;
             }
             main section#softwareDev .card__back h2:first-of-type {
                 margin-top: 2%;
@@ -234,3 +244,100 @@ main {
     main section#space12 {
         background: #cdcdd5;
     }
+
+main#second {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    background: #4a4a4a;
+}
+    main#second section {
+        width: 50%;
+    }
+        main#second section .card__back h2 {
+            display: block;
+            position: relative;
+            top: 26%;
+        }
+        main#second section .card__back p {
+            display: block;
+            position: relative;
+            top: 28%;
+            margin: 0 auto;
+            max-width: 350px;
+        }
+        main#second section .card__back a {
+            height: 70px;
+            width: 70px;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            top: 17%;
+        }
+            main#second section .card__back a img {
+                width: 100%;
+            }
+    main#second section#food {
+        background: #cdcdd5;
+    }
+        main#second section#food .card__back {
+            background: #5a8bcd;
+        }
+    main#second section#done-for {
+        background: #4a4a4a;
+    }
+        main#second section#done-for .card__back {
+            background: #083962;
+        }
+            main#second section#done-for .card__back h2, main#second section#done-for .card__back p {
+                color: #ffffff;
+            }
+        main#second section#done-for h1 {
+            color: #ffffff;
+        }
+    main#second section#project-space3 {
+        background: url(./../images/pattern.svg);
+        background-size: 60px;
+    }
+    main#second section#snail-fantasy {
+        background: #2062ac;
+    }
+        main#second section#snail-fantasy .card__back {
+            background: #5a8bcd;
+        }
+        main#second section#snail-fantasy h1 {
+            color: #ffffff;
+        }
+    main#second section#blackbelts {
+        background: #5a8bcd;
+    }
+        main#second section#blackbelts .card__back {
+            background: #083962;
+        }
+            body main#second section#blackbelts .card__back div {
+                position: relative;
+                top: 23%;
+            }
+            body main#second section#blackbelts .card__back a {
+                width: 70px;
+                height: 70px;
+                display: inline-block;
+                margin: 0 5px 0;
+            }
+                main#second section#blackbelts .card__back a img {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    position: static;
+                }
+            main#second section#blackbelts .card__back h2, main#second section#blackbelts .card__back p {
+                color: #ffffff;
+            }
+    main#second section#experiments {
+        background: #cdcdd5;
+    }
+        main#second section#experiments a {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }

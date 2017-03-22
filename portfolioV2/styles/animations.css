@@ -1,16 +1,13 @@
 nav {
-    transition: top .3s;
-    transition-timing-function: ease-in;
+    transition: top .3s ease-in;
 }
 .open {
-    transition: top .6s;
-    transition-timing-function: ease-out;
+    transition: top .6s ease-out;
     top: 0;
 }
 
 .bracket {
-    transition: all .4s;
-    transition-timing-function: ease-out;
+    transition: all .4s ease-out;
     display: inline-block;
 }
 
@@ -22,8 +19,7 @@ nav {
 }
 
 .bracketSpinLeft, .bracketSpinRight {
-    transition-timing-function: ease-out;
-    transition: all .4s, transform .7s;
+    transition: transform .7s ease-out, margin .4 ease-out;
 }
 .bracketSpinLeft {
     transform: rotate(360deg);
@@ -32,46 +28,60 @@ nav {
     transform: rotate(-360deg);
 }
 
-a.navButton {
+div.navButton {
     transition: all .3s;
 }
-a.openNavButton {
-    transition: all .6s;
+div.openNavButton {
+    transition: box-shadow .6s;
     background: none;
 }
-a.navButtonHover {
+div.navButtonHover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .spin {
-    transition: .75s ease all;
+    transition: transform .75s ease;
 }
 .spin:hover {
     transform: rotate(360deg);
 }
 
-section.lightHover {
-    transition: .3s ease filter;
+section {
+    transition: filter .3s ease, width 1s ease, height 1s ease;
 }
-section.lightHover:hover {
+section:hover {
     filter: brightness(1.085);
 }
 
 nav ul li a {
-    transition: .3s ease all;
+    transition: color .3s ease;
 }
 nav ul li a:hover {
     color: #5a8bcd;
 }
 
 div.loading {
-    transition: .6s ease opacity;
+    transition: opacity .6s ease;
 }
 div.doneLoading {
     opacity: 0;
 }
 
 h1#snail.animate {
-    transition: .9s linear all;
+    transition: transform .9s linear;
     transform: rotate(720deg);
+}
+
+.noScroll {
+    overflow: hidden;
+}
+
+main#second {
+    transition: all .7s ease-out;
+    position: absolute;
+    top: 0;
+    left: -100%;
+}
+main#second.flyIn {
+    left: 0;
 }
