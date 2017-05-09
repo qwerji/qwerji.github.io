@@ -29,7 +29,7 @@ const words = [
 ]
 
 function preload() {
-    font = loadFont("fonts/AvenirNextLTPro-Demi.otf") 
+    font = loadFont("./../fonts/AvenirNextLTPro-Demi.otf") 
 }
 
 function setup() {
@@ -90,7 +90,7 @@ function setup() {
 }
 
 function goToMatter() {
-    window.location = 'matter.html'
+    window.location = '/matter'
 }
 
 function random255() {

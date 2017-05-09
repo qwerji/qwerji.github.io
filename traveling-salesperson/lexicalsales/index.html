@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>traveling salesperson | naive</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.11.0/styles/agate.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.11.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./../../scripts/p5/p5.js"></script>
+    <style>
+        body {
+            background: #535353;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="sketch"></div>
+    <pre><code class="lang-js">
+    // This is the lexicographical ordering approach to the
+    // traveling salesperson algorithm.
+    // It uses the naive approach, but iterating with the
+    // next lexical ordering.
+
+    // Still not very efficient at finding a solution, but better.
+
+    // The white line is the current order being checked
+    // The first number is the current order's indicies
+    // The green line is the best fit so far.
+
+    const cityCount = 7,
+        totalPerms = rFactorial(cityCount)
+
+    let best = Infinity,
+        cities = [],
+        order = [],
+        bestOrder = order,
+        end = false,
+        count = 0
+
+    function setup() {
+        createCanvas(400,600).parent('sketch')
+        for (let i = 0; i < cityCount; i++) {
+            cities[i] = createVector(random(width), random(height/2))
+            order[i] = i
+        }
+    }
+
+    function draw() {
+        if (end) { noLoop(); return }
+        count++
+        background(0)
+        drawCitiesAndOrder()
+        translate(0, height/2)
+        drawBest()
+        drawText(order)
+        order = nextLex(order)
+        calcTotalDistance(cities, order)
+    }
+
+    function drawText(order) {
+        translate(0, 0)
+        textSize(40)
+        fill(255)
+        strokeWeight(3)
+        let txt = ''
+        for (let i = 0; i < order.length; i++) {
+            txt += order[i]
+        }
+        text(txt, 20, 0)
+        textSize(32)
+        text(((count/totalPerms)*100).toFixed(2) + '% complete', 20, (height-310))
+    }
+
+    function drawBest() {
+        beginShape()
+        stroke(0,255,100)
+        strokeWeight(4)
+        for (let i = 0; i < bestOrder.length; i++) {
+            vertex(cities[bestOrder[i]].x, cities[bestOrder[i]].y)
+        }
+        endShape()
+    }
+
+    function drawCitiesAndOrder() {
+        noFill()
+        stroke(255)
+        strokeWeight(2)
+        beginShape()
+        for (let i = 0; i < cities.length; i++) {
+            vertex(cities[order[i]].x, cities[order[i]].y)
+            ellipse(cities[i].x, cities[i].y, 8, 8)
+        }
+        endShape()
+    }
+
+    function swap(arr,idx1,idx2) {
+        const temp = arr[idx1]
+        arr[idx1] = arr[idx2]
+        arr[idx2] = temp
+    }
+
+    function calcTotalDistance(arr, order) {
+        let d = 0
+        for (let i = 0; i < order.length-1; i++) {
+            const cityA = arr[order[i]],
+                cityB = arr[order[i+1]]
+            d += dist(cityA.x, cityA.y, cityB.x, cityB.y)
+        }
+        if (d < best) {
+            best = d
+            bestOrder = order.slice()
+        }
+        return d
+    }
+
+    function nextLex(arr) {
+        let largestI = -1
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] < arr[i+1]) {
+                largestI = i
+            }
+        }
+        if (largestI === -1) {
+            background(0)
+            noFill()
+            stroke(255)
+            strokeWeight(2)
+            beginShape()
+            for (let i = 0; i < cities.length; i++) {
+                ellipse(cities[i].x, cities[i].y, 8, 8)
+            }
+            endShape()
+            drawBest()
+            drawText(bestOrder)
+            end = true
+        }
+        let largestJ = -1
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[largestI] < arr[j]) {
+                largestJ = j
+            }
+        }
+        swap(arr, largestI, largestJ)
+        return arr.concat(arr.splice(largestI+1).reverse())
+    }
+
+    function rFactorial(num) {
+        if (num === 1) return num
+        return num*rFactorial(num-1)
+    }
+    </code>
+    </pre>
+    <script src="sketch.js"></script>
+</body>
+</html>
