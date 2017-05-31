@@ -48,6 +48,11 @@ function preload() {
             link:'starburst',
             image: loadImage('images/8.svg'),
             title: 'Star Burst'
+        },
+        {
+            link:'starfield',
+            image: loadImage('images/9.svg'),
+            title: 'Starfield'
         }
     ]
 }

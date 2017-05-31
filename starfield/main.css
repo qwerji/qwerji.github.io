@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111111;
+}
+
+.star {
+    background: #ffffff;
+    position: absolute;
+    display: inline-block;
+    border-radius: 100px;
+}
+
+.ship {
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+    transform-origin: 50% 50% 50%;
+}
+
+iframe {
+    display: none;
+}
