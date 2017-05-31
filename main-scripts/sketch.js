@@ -5,7 +5,15 @@ let bubbles = [],
     bubbleSize,
     delta = 0,
     textNode
-const bubbleSpeed = 100
+const bubbleSpeed = 100,
+    palette = [
+        {r:254, g:163, b:170},
+        {r:248, g:184, b:139},
+        {r:250, g:248, b:132},
+        {r:186, g:237, b:145},
+        {r:178, g:206, b:254},
+        {r:242, g:162, b:232}
+    ]
 
 function preload() {
     links = [
@@ -61,7 +69,7 @@ function setup() {
     createCanvas(window.innerWidth, window.innerHeight)
     bubbleSize = floor((width*height)*0.000045)
     for (let i = 0; i < links.length; i++) {
-        bubbles.push(new Bubble(links[i]))
+        bubbles.push(new Bubble(links[i], palette[i % palette.length]))
     }
     textNode = {
         bubble: null

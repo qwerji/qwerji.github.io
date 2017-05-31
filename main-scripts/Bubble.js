@@ -1,6 +1,7 @@
-function Bubble(data) {
+function Bubble(data, color) {
 
     this.r = bubbleSize
+    this.color = color
     this.x = random(this.r*2,width-(this.r*2))
     this.y = random(this.r*2,height-(this.r*2))
 
@@ -16,12 +17,6 @@ function Bubble(data) {
 
     this.vx = random(-bubbleSpeed/2,bubbleSpeed)
     this.vy = random(-bubbleSpeed/2,bubbleSpeed)
-    const rand = random(120,130)
-    this.color = {
-        r: rand,
-        g: random(230,255),
-        b: rand
-    }
     this.intersecting = false
     this.data = data
 
