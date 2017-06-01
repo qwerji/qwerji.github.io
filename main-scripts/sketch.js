@@ -61,6 +61,11 @@ function preload() {
             link:'starfield',
             image: loadImage('images/9.svg'),
             title: 'Starfield'
+        },
+        {
+            link:'attractionrepulsion',
+            image: loadImage('images/10.svg'),
+            title: 'Attraction/Repulsion Forces'
         }
     ]
 }
