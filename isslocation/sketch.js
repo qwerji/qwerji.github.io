@@ -144,7 +144,7 @@ function formatLL(lat, lon) {
     if (lon < 0) {
         lonStr += Math.abs(lon) + '° W'
     } else {
-        lonStr += lat + '° E'
+        lonStr += lon + '° E'
     }
     return { lat: latStr, lon: lonStr }
 }
