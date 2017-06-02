@@ -66,6 +66,11 @@ function preload() {
             link:'attractionrepulsion',
             image: loadImage('images/10.svg'),
             title: 'Attraction/Repulsion Forces'
+        },
+        {
+            link:'isslocation',
+            image: loadImage('images/11.svg'),
+            title: 'ISS Location'
         }
     ]
 }
