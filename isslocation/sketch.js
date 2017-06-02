@@ -59,7 +59,7 @@ function World() {
 
 function ISS(worldSetup) {
 
-    this.img = loadImage('/iss.png')
+    this.img = loadImage('./iss.png')
     this.scl = 0.07
 
     this.lat = 0
