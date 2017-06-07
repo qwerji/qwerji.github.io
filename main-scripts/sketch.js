@@ -72,6 +72,11 @@ function preload() {
             image: loadImage('images/11.svg'),
             title: 'ISS Location'
         }
+        {
+            link:'connectfour',
+            image: loadImage('images/12.svg'),
+            title: 'Connect 4'
+        }
     ]
 }
 
