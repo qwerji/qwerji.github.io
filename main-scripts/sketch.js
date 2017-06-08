@@ -1,11 +1,8 @@
 let bubbles = [],
-    mspf = 0,
-    fpsTimer = Date.now(),
     links,
     bubbleSize,
-    delta = 0,
     textNode
-const bubbleSpeed = 100,
+const bubbleSpeed = 1.5,
     palette = [
         {r:254, g:163, b:170},
         {r:248, g:184, b:139},
@@ -76,6 +73,11 @@ function preload() {
             link:'connectfour',
             image: loadImage('images/12.svg'),
             title: 'Connect 4'
+        },
+        {
+            link:'pi',
+            image: loadImage('images/13.svg'),
+            title: 'Leibniz series visualization'
         }
     ]
 }
@@ -95,7 +97,6 @@ function setup() {
 
 function draw() {
     background(53)
-    deltaTime()
     for (let i = 0; i < bubbles.length; i++) {
         const b1 = bubbles[i]
         b1.update()
@@ -116,13 +117,6 @@ function pointIntersects(point, bubble) {
         return true
     }
     return false
-}
-
-function deltaTime() {
-    const now = Date.now()
-    mspf = now - fpsTimer
-    delta = mspf / 1000
-    fpsTimer = now
 }
 
 function mousePressed() {

@@ -7,13 +7,10 @@ function Bubble(data, color) {
 
     // Choose a random location that does not intersect
     // with an existing bubble
-    for (let i = 0; i < bubbles.length; i++) {
-        const that = bubbles[i]
-        while (dist(this.x, this.y, that.x, that.y) - this.r - that.r <= 0) {
-            this.x = random(this.r*2,width-(this.r*2))
-            this.y = random(this.r*2,height-(this.r*2))
-        }
-    }
+    do {
+        this.x = random(this.r*2,width-(this.r*2))
+        this.y = random(this.r*2,height-(this.r*2))
+    } while (bubbleIntersects(this))
 
     this.vx = random(-bubbleSpeed/2,bubbleSpeed)
     this.vy = random(-bubbleSpeed/2,bubbleSpeed)
@@ -22,20 +19,16 @@ function Bubble(data, color) {
 
 }
 
-Bubble.prototype.update = function(count=0) {
-    this.x += this.vx * delta
-    this.y += this.vy * delta
+Bubble.prototype.update = function() {
+    this.x += this.vx
+    this.y += this.vy
 
-    let changed = false
     if (this.x + this.r >= width || this.x - this.r < 0) {
         this.vx *= -1
-        changed = true
     }
     if (this.y + this.r >= height || this.y - this.r < 0) {
         this.vy *= -1
-        changed = true
     }
-    if (changed && count < 100) this.update(count+1)
 }
 
 Bubble.prototype.display = function() {
@@ -68,4 +61,14 @@ Bubble.prototype.collide = function(that) {
 
     this.update()
     that.update()
+}
+
+function bubbleIntersects(bubble) {
+    for (let i = 0; i < bubbles.length; i++) {
+        const that = bubbles[i]
+        if (dist(bubble.x, bubble.y, that.x, that.y) - bubble.r - that.r <= 0) {
+            return true
+        }
+    }
+    return false
 }
