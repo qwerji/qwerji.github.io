@@ -35,6 +35,7 @@ Board.prototype.check = function(disc) {
     // Construct a more easily traverseable grid of
     // the board's current state
     const grid = []
+    let zeroCount = 0
     for (let i = 0; i < this.slots.length; i++) {
         const slot = this.slots[i]
         grid[i] = []
@@ -49,6 +50,7 @@ Board.prototype.check = function(disc) {
                 }
             } else {
                 slotArr.push(0)
+                zeroCount++
             }
         }
     }
@@ -142,6 +144,7 @@ Board.prototype.check = function(disc) {
             }
         }
     }
+    if (zeroCount === 0) this.draw(disc)
     this.turn = !this.turn
 }
 
@@ -152,6 +155,15 @@ Board.prototype.win = function(disc) {
         this.winnerElt.classList.add('fly-in')
         this.winnerText.textContent = `${winner} wins!`
         this.winnerText.style.color = winner.toLowerCase()
+    }, {once: true})
+}
+
+Board.prototype.draw = function(disc) {
+    this.inPlay = false
+    disc.elt.addEventListener('transitionend', () => {
+        this.winnerElt.classList.add('fly-in')
+        this.winnerText.textContent = `Draw`
+        this.winnerText.style.color = '#E0E0E0'
     }, {once: true})
 }
 
