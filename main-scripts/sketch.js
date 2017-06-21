@@ -78,6 +78,11 @@ function preload() {
             link:'pi',
             image: loadImage('images/13.svg'),
             title: 'Leibniz series visualization'
+        },
+        {
+            link:'ur',
+            image: loadImage('images/14.svg'),
+            title: 'Ur'
         }
     ]
 }

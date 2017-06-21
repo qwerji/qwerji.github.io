@@ -1,0 +1,39 @@
+.piece {
+    transition: 0.4s ease top, 0.4s ease left;
+}
+    .piece.turn {
+        cursor: pointer;
+    }
+.select {
+    filter: brightness(1.6);
+}
+.score-pile {
+    transition: 0.2s ease background;
+}
+.score-pile.select {
+    background: rgba(255,255,0,0.5);
+}
+.square {
+    transition: 0.2s ease filter;
+}
+.button {
+    transition: 0.2s ease box-shadow;
+    cursor: pointer;
+}
+.button:hover {
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5) inset;
+}
+.dice-pip {
+    transition: 0.1s linear opacity;
+}
+.dice-pip.hidden {
+    opacity: 0;
+}
+.dice.spin {
+    transition: 1s ease-out transform;
+    transform-origin: 50% 70%;
+    transform: rotate(1080deg);
+}
+.fly-in {
+    transform: translateY(0);
+}
