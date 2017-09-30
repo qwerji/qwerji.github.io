@@ -83,6 +83,11 @@ function preload() {
             link:'ur',
             image: loadImage('images/14.svg'),
             title: 'Ur'
+        },
+        {
+            link:'wumpus',
+            image: loadImage('wumpus/static/img/wumpus.png'),
+            title: 'Wumpus'
         }
     ]
 }
