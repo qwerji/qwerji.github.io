@@ -4,7 +4,7 @@ let player,
     totalWumpus = 0
 
 function preload() {
-    const imagePath = 'wumpus/static/img/'
+    const imagePath = 'static/img/'
     ROOM_IMAGES.unexplored = loadImage(imagePath + 'unexplored.png')
     ROOM_IMAGES.weapon = loadImage(imagePath + 'weapon.png')
     ROOM_IMAGES.hero = loadImage(imagePath + 'hero.png')
