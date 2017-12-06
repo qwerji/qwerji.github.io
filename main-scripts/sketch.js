@@ -80,14 +80,19 @@ function preload() {
             title: 'Leibniz series visualization'
         },
         {
+            link:'wumpus',
+            image: loadImage('wumpus/static/img/wumpus.png'),
+            title: 'Wumpus'
+        },
+        {
             link:'ur',
             image: loadImage('images/14.svg'),
             title: 'Ur'
         },
         {
-            link:'wumpus',
-            image: loadImage('wumpus/static/img/wumpus.png'),
-            title: 'Wumpus'
+            link:'crows',
+            image: loadImage('images/15.svg'),
+            title: 'Crows'
         }
     ]
 }
