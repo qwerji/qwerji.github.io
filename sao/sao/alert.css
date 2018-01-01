@@ -1,0 +1,117 @@
+/* SAO Alert CSS */
+@font-face {
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Fredoka One'), local('FredokaOne-Regular'), url(https://fonts.gstatic.com/s/fredokaone/v5/SL0aFUFfkFMMdariYQ3_YY4P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Quicksand Light'), local('Quicksand-Light'), url(https://fonts.gstatic.com/s/quicksand/v7/qhfoJiLu10kFjChCCTvGlOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+@font-face {
+    font-family: SAO;
+    src: url("sao-font.otf") format("opentype");
+}
+
+.sao-alert * {
+    margin: 0;
+    padding: 0;
+}
+.sao-alert {
+    display: block;
+    width: 490px;
+    border: 2px solid snow;
+    background: snow;
+    color: #505050;
+    opacity: 0.85;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+    margin: 15% auto;
+    transition: .3s ease opacity, .3s ease transform;
+}
+    .sao-alert.closed {
+        opacity: 0;
+        transform: scale(.5);
+    }
+    .sao-alert.accordion {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+    .sao-alert p,
+    .sao-alert section {
+        text-align: center;
+        height: 90px;
+        line-height: 90px;
+    }
+    .sao-alert section {
+        background: snow;
+    }
+        .sao-alert section:first-of-type h3 {
+            background: none;
+            font-family: SAO, sans-serif;
+            font-size: 28px;
+        }
+    .sao-alert p.content {
+        background: lightgrey;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 21px;
+        box-shadow: inset 0 -7px 25px -7px rgba(0, 0, 0, 0.4),
+            inset 0 7px 25px -7px rgba(0, 0, 0, 0.4);
+        height: 120px;
+        line-height: 120px;
+        color: rgba(0, 0, 0, 0.7);
+        transition: .3s ease all;
+    }
+    .sao-alert p.content.closed {
+        height: 0px;
+        line-height: 0px;
+        color: rgba(0, 0, 0, 0);
+    }
+    .sao-alert section:nth-of-type(2) {
+        height: 130px;
+        line-height: 100px;
+    }
+        .sao-alert section:nth-of-type(2) div {
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            background: none;
+            position: relative;
+        }
+        .sao-alert section:nth-of-type(2) div p.button {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            border-radius: 50px;
+            color: snow;
+            padding: 4px;
+            background-clip: content-box;
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 25px);
+            transform: translateY(-50%);
+            font-family: 'Fredoka One', sans-serif;
+            line-height: 50px;
+        }
+        .sao-alert section:nth-of-type(2) div .accept {
+            border: 3px solid rgb(61, 178, 221);
+            background-color: rgb(61, 178, 221);
+            font-size: 33px;
+        }
+        .sao-alert section:nth-of-type(2) div .accept:hover {
+            background-color: rgb(161, 235, 255);
+            cursor: pointer;
+        }
+        .sao-alert section:nth-of-type(2) div .reject {
+            border: 3px solid rgb(255, 82, 82);
+            background-color: rgb(255, 82, 82);
+            font-size: 28px;
+        }
+        .sao-alert section:nth-of-type(2) div .reject:hover {
+            background-color: rgb(255, 165, 165);
+            cursor: pointer;
+        }
