@@ -81,7 +81,7 @@ function preload() {
         },
         {
             link:'wumpus',
-            image: loadImage('wumpus/static/img/wumpus.png'),
+            image: loadImage('images/17.svg'),
             title: 'Wumpus'
         },
         {
@@ -93,6 +93,11 @@ function preload() {
             link:'crows',
             image: loadImage('images/15.svg'),
             title: 'Crows'
+        },
+        {
+            link:'sao',
+            image: loadImage('images/16.svg'),
+            title: 'SAO Alert'
         }
     ]
 }
