@@ -95,7 +95,7 @@ function preload() {
             title: 'Crows'
         },
         {
-            link:'sao',
+            link:'sao/',
             image: loadImage('images/16.svg'),
             title: 'SAO Alert'
         }
