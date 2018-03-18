@@ -1,4 +1,4 @@
-let w = 10, colony, slider, resetButton
+let w = 6, colony
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
@@ -6,14 +6,10 @@ function setup() {
 
     colony = new Colony()
     colony.setup()
-
-    slider = createSlider(1,30,15)
-    resetButton = createButton('Reset')
-    resetButton.mousePressed(colony.setup)
 }
 
 function draw() {
-    frameRate(slider.value())
+    frameRate(15)
     background(230)
     colony.update()
     colony.show()
@@ -78,7 +74,7 @@ Cell.prototype.show = function (x, y) {
         noStroke()
     }
 
-    ellipse(x + 5, y + 5, 9)
+    ellipse(x + 5, y + 5, w)
 }
 
 Cell.prototype.checkNeighbors = function (i,j,cells) {
@@ -114,4 +110,8 @@ Cell.prototype.checkNeighbors = function (i,j,cells) {
         return {reaction: 3, status: cell.status}
     }
     
+}
+
+function mouseClicked() {
+    colony.setup()
 }
