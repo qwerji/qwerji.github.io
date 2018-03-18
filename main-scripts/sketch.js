@@ -19,16 +19,16 @@ function preload() {
             image: loadImage('images/1.svg'),
             title: 'Steering Behaviors'
         },
-        {
-            link:'solver',
-            image: loadImage('images/2.svg'),
-            title: 'Jumble Solver'
-        },
-        {
-            link:'matter',
-            image: loadImage('images/3.svg'),
-            title: 'Matter.js + DOM Elements'
-        },
+        // { TODO: Fix
+        //     link:'solver',
+        //     image: loadImage('images/2.svg'),
+        //     title: 'Jumble Solver'
+        // },
+        // { TODO: Not that great
+        //     link:'matter',
+        //     image: loadImage('images/3.svg'),
+        //     title: 'Matter.js + DOM Elements'
+        // },
         {
             link:'gol',
             image: loadImage('images/4.svg'),
@@ -44,11 +44,11 @@ function preload() {
             image: loadImage('images/6.svg'),
             title: 'Nim'
         },
-        {
-            link:'traveling-salesperson/naive/',
-            image: loadImage('images/7.svg'),
-            title: 'Traveling Salesperson'
-        },
+        // { TODO: Make this better
+        //     link:'traveling-salesperson/naive/',
+        //     image: loadImage('images/7.svg'),
+        //     title: 'Traveling Salesperson'
+        // },
         {
             link:'starburst',
             image: loadImage('images/8.svg'),

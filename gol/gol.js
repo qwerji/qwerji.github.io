@@ -1,7 +1,7 @@
 let w = 10, colony, slider, resetButton
 
 function setup() {
-    createCanvas(1000, 600)
+    createCanvas(windowWidth, windowHeight)
     frameRate(15)
 
     colony = new Colony()
