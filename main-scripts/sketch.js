@@ -138,7 +138,11 @@ function mousePressed() {
     for (let i = 0; i < bubbles.length; i++) {
         const bubble = bubbles[i]
         if (pointIntersects({x: mouseX, y: mouseY}, bubble)) {
-            window.location.href += bubble.data.link
+            if (bubble.data.title === "Ur") {
+                window.location.href = "http://ur.bentswanson.com"
+            } else {
+                window.location.href += bubble.data.link
+            }
         }
     }
 }
