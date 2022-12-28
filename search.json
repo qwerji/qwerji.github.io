@@ -1,0 +1,18 @@
+---
+layout: null
+---
+[
+  {% for post in site.posts %}
+    {
+
+      "title"    : "{{ post.title | strip_html | escape }}",
+      "description" : "{{ post.description | escape }}",
+      "url"      : "{{ site.baseurl }}{{ post.url }}",
+      "category" : "{{post.categories | join: ', '}}",
+      "tags"     : "{{ post.tags | join: ', ' }}",
+      "date"     : "{{ post.date }}",
+      "pretty-date": "{{ post.date | date: "%m-%d-%Y" }}"
+
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
