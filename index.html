@@ -6,7 +6,7 @@ layout: default
 
 <section class="post" style="padding: 0;">
 {% for post in site.tags.pinned %}
-<h2><a href="{{post.url}}" style="text-decoration: none;">{{ post.title }} <span style="float: right;">📌</span></a></h2>
+<h2><a href="{{post.url}}">{{ post.title }} <span style="float: right;">📌</span></a></h2>
 <span class="meta" style="margin:0 0 32px 0;"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></span>
 {{ post.content }}
 {% endfor %}

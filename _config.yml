@@ -1,15 +1,8 @@
 site: qwerji
 url: https://qwerji.com
 title: qwerji
-# description: a blog
-# twitter:
-#   username: #yourusername
-#   card: summary
-#   creator: #yourusername
 author:
-  # twitter: #yourusername
   name: qwerji
-  avatar:
   email: bentswanson@gmail.com
   url: qwerji.com
 permalink: pretty

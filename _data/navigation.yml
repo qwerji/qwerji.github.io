@@ -1,7 +1,7 @@
 links:
 - title: posts
-  url: /posts
+  url: /posts/
 - title: rss
   url: /atom.xml
 - title: about
-  url: /about
+  url: /about/

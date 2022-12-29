@@ -21,9 +21,9 @@ nav ul {
 }
 
 a {
-    // color: #000;
     text-decoration-skip-ink: auto;
     text-decoration: none;
+
     &:hover {
         text-decoration: underline;
     }
@@ -167,6 +167,9 @@ strong, b {
 	overflow:hidden;
 	text-overflow:ellipsis;
 	text-decoration: none;
+}
+.posts li a:hover {
+	text-decoration: underline;
 }
 
 .posts li time, .projects li time {

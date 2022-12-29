@@ -3,7 +3,7 @@ layout: post
 title: naive traveling salesperson
 description: This is the naive or brute-force approach to the traveling salesperson algorithm.
 summary: This is the naive or brute-force approach to the traveling salesperson algorithm.
-tags: code p5
+tags: ["code", "p5"]
 ---
 <iframe style="height: 500px" src="https://editor.p5js.org/qwerji/full/OxH6T9_Vu"></iframe>
 [edit the code](https://editor.p5js.org/qwerji/sketches/OxH6T9_Vu)
