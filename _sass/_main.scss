@@ -13,6 +13,7 @@ body {
 	line-height:1.5;
 	font-size: 1rem;
 	color: rgb(22, 23, 26);
+    background-color: #fefefe;
 }
 
 nav ul {
@@ -20,9 +21,12 @@ nav ul {
 }
 
 a {
-    color: #000;
+    // color: #000;
     text-decoration-skip-ink: auto;
-    text-decoration: underline;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 pre {
@@ -63,6 +67,17 @@ pre {
 	overflow-x: auto;
 }
 
+.tags {
+    text-align: right; 
+    a {
+        color: lightcoral;
+    }
+}
+
+.accent {
+    color: lightcoral;
+}
+
 img {
 	max-width:100%;
 }
@@ -81,6 +96,10 @@ header {
 	position:relative;
 }
 
+header h1 {
+    color: lightcoral;
+}
+
 header a {
 	text-decoration: none;
 }
@@ -93,6 +112,7 @@ header li {
 
 header a.active {
 	font-weight: bold;
+    color: lightcoral;
 }
 
 header,section {
@@ -156,7 +176,7 @@ strong, b {
 }
 
 .post ul, .project ul, .post ol  {
-	//list-style-position: inside;
+    // list-style-position: inside;
 }
 
 main {

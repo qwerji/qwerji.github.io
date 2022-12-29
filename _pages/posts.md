@@ -57,7 +57,7 @@ const search = SimpleJekyllSearch({
 {% endfor %}
 </ul>
 
-<p style="text-align: right;">tags: 
+<p class="tags">tags: 
 {% for tag in site.tags %}
   {% assign t = tag | first %}
   <a href="/tag/{{t}}">{{t}}</a>
