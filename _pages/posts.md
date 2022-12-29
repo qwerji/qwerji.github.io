@@ -1,6 +1,7 @@
 ---
 layout: page
 title: posts
+permalink: /posts/
 ---
 
 <section class="posts">
