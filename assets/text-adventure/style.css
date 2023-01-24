@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Monaco, monospace;
+    color: #C2EEF4;
+    font-size: 20px;
+    cursor: default;
+}
+
+body {
+    background: black;
+}
+
+main {
+    display: block;
+    background: black;
+    height: 100vh;
+    position: relative;
+    min-width: 850px;
+    max-width: unset;
+    margin: unset;
+    padding: unset;
+}
+    main pre {
+        background: black;
+        overflow-y: scroll;
+        margin: unset;
+        padding: unset;
+        margin-bottom: 35px;
+        position: absolute;
+        bottom: 0;
+        white-space: pre-wrap;
+    }
+
+.input-container {
+    position: fixed;
+    bottom: 0;
+    background: black;
+    width: 100%;
+    padding-bottom: 5px;
+}
+    .input-container span {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+.input-container input {
+    width: calc(100% - 25px);
+    background: black;
+    vertical-align: bottom;
+    border: none;
+    padding-left: 5px;
+}
+
+input:focus {
+    outline:none;
+}
